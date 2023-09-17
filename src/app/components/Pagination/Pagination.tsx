@@ -8,7 +8,12 @@ const Pagination = () => {
     <div className="flex">
       <PageFirst />
       <PageArrow />
+      {/* page 수 대로 map 돌려서 번호 만들 것. 
+      아래 pageArrow transition
+      */}
+      <div>1</div>
       <PageLast />
+      <PageArrow />
     </div>
   );
 };

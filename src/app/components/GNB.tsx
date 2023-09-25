@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Logo from "./Icon/Logo";
+import { Logo } from "./Icon";
 
 const GNB = () => {
   return (

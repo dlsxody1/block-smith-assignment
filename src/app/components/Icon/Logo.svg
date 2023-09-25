@@ -1,9 +1,4 @@
-import React from "react";
-
-const Logo = () => {
-  return (
-    <div>
-      <svg
+<svg
         xmlns="http://www.w3.org/2000/svg"
         width="166"
         height="26"
@@ -62,8 +57,3 @@ const Logo = () => {
           </clipPath>
         </defs>
       </svg>
-    </div>
-  );
-};
-
-export default Logo;

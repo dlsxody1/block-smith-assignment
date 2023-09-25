@@ -1,5 +1,5 @@
 import React from "react";
-import LoadingUI from "../components/Icon/LoadingUI";
+import { LoadingUI } from "../components/Icon";
 
 const loading = () => {
   return <LoadingUI />;

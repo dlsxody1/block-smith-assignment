@@ -1,9 +1,16 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import SearchInput from "../components/Input/SearchInput";
 import AnnounceArticle from "../components/Article/AnnounceArticle";
 import Pagination from "../components/Pagination/Pagination";
+import { getAnnouncement } from "../../../prisma/announcement";
 
 const Announcement = () => {
+  const [data, setData] = useState([]);
+  getAnnouncement().then((res: any) => {
+    setData(res);
+  });
+  console.log(data);
   return (
     <>
       <div className="flex justify-between pb-0 items-center self-stretch pb-6 border-b border-[#EDEDED] ">

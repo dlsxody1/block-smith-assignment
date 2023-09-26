@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import DeleteButton from "@/app/components/Button/DeleteButton";
 import GoToListButton from "@/app/components/Button/GoToListButton";

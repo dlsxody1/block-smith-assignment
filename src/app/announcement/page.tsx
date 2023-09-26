@@ -1,23 +1,29 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchInput from "../components/Input/SearchInput";
 import AnnounceArticle from "../components/Article/AnnounceArticle";
 import Pagination from "../components/Pagination/Pagination";
-import { getAnnouncement } from "../../../prisma/announcement";
+import { getAnnouncement } from "../../../prisma/announceQuery";
+import { AnnounceProps } from "../types/AnnouncementTypes";
+import { useQuery } from "@tanstack/react-query";
 
 const Announcement = () => {
-  const [data, setData] = useState([]);
-  getAnnouncement().then((res: any) => {
-    setData(res);
-  });
-  console.log(data);
+  const [announcement, setAnnouncement] = useState<
+    AnnounceProps[] | undefined
+  >();
+
+  getAnnouncement().then((res) => setAnnouncement(res));
+
   return (
     <>
       <div className="flex justify-between pb-0 items-center self-stretch pb-6 border-b border-[#EDEDED] ">
         <div className="font-semibold text-[32px] ">공지사항</div>
         <SearchInput />
       </div>
-      <AnnounceArticle></AnnounceArticle>
+
+      {announcement?.map(({ id, content, createdAt }) => {
+        <AnnounceArticle id={id} content={content} createdAt={createdAt} />;
+      })}
       <div className="bg-[#EDEDED] w-[800px] h-px mt-8"></div>
       <Pagination />
     </>

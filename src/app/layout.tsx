@@ -6,7 +6,7 @@ import type { LayoutProps } from "./types/LayoutProps";
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
-      <body>
+      <body suppressHydrationWarning={true}>
         <GNB />
         <QueryProvider>{children}</QueryProvider>
       </body>

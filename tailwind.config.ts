@@ -22,6 +22,9 @@ const config: Config = {
       colors: {
         announceTime: "#707070",
       },
+      padding: {
+        dataLoading: "8px 110px",
+      },
     },
   },
   plugins: [],

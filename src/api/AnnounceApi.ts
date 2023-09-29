@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000/api/announcement/";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const getAnnouncement = async () => {
   const res = await fetch(`${BASE_URL}`);

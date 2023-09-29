@@ -24,6 +24,7 @@ const config: Config = {
       },
       padding: {
         dataLoading: "8px 110px",
+        page : "11px 14px"
       },
     },
   },

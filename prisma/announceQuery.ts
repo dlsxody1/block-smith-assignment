@@ -25,30 +25,6 @@ export const pagination = async () => {
   return page;
 };
 
-export const searchQuery = async (word: string) => {
-  try {
-    const search = await prisma.announcement.findMany({
-      where: {
-        OR: [
-          {
-            title: {
-              contains: word,
-            },
-          },
-          {
-            content: {
-              contains: word,
-            },
-          },
-        ],
-      },
-    });
-    return search;
-  } catch (err) {
-    alert(err);
-  }
-};
-
 export const updateAnnouncement = async ({
   id,
   title,

@@ -9,12 +9,25 @@ export async function main() {
   }
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
-    const announcement = await prisma?.announcement.findMany();
+    const totalAnnouncement = await prisma?.announcement.count();
+    const totalPages = await Math.ceil(totalAnnouncement / 10);
+
+    const announcement = await prisma.announcement.findMany({
+      skip: totalAnnouncement - 10,
+      take: 10,
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
     return NextResponse.json(
-      { message: "성공적으로 데이터를 불러왔습니다.", announcement },
+      {
+        message: "성공적으로 데이터를 불러왔습니다.",
+        announcement,
+        totalPages,
+      },
       { status: 200 }
     );
   } catch (error) {
@@ -24,3 +37,27 @@ export async function GET() {
     );
   }
 }
+
+export const searchQuery = async (word: string) => {
+  try {
+    const search = await prisma.announcement.findMany({
+      where: {
+        OR: [
+          {
+            title: {
+              contains: word,
+            },
+          },
+          {
+            content: {
+              contains: word,
+            },
+          },
+        ],
+      },
+    });
+    return search;
+  } catch (err) {
+    alert(err);
+  }
+};

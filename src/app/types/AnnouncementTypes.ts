@@ -8,6 +8,7 @@ export interface AnnounceProps {
 
 export interface QueryProps {
   announcement: AnnounceProps[];
+  totalPages: number;
 }
 
 export interface AnnounceSummary

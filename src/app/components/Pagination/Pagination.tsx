@@ -1,17 +1,33 @@
 import React from "react";
 import { CaretRight, PageFirst, PageLast } from "../Icon";
 
-const Pagination = () => {
+const Pagination = ({ totalPages }: { totalPages: number | undefined }) => {
   return (
     <div className="flex">
-      <PageFirst />
-      <CaretRight />
-      {/* page 수 대로 map 돌려서 번호 만들 것. 
-      아래 pageArrow transition
-      */}
-      <div>1</div>
-      <PageLast />
-      <CaretRight />
+      <div className="p-2 flex items-center cursor-pointer">
+        <PageFirst />
+      </div>
+      <div className="p-2 flex items-center cursor-pointer">
+        <CaretRight />
+      </div>
+      {Array(totalPages)
+        .fill("_")
+        .map((_, i) => {
+          return (
+            <div
+              className="flex text-sm justify-center items-center p-page cursor-pointer"
+              key={i}
+            >
+              {i + 1}
+            </div>
+          );
+        })}
+      <div className="p-2` flex items-center transform rotate-180 cursor-pointer">
+        <CaretRight />
+      </div>
+      <div className="p-2  flex items-center cursor-pointer">
+        <PageLast />
+      </div>
     </div>
   );
 };

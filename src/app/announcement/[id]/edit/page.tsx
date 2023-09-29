@@ -6,18 +6,13 @@ import dynamic from "next/dynamic";
 import { useQuery } from "@tanstack/react-query";
 import { dateFormatter } from "@/util/dateFormatter";
 import { AnnounceProps } from "@/app/types/AnnouncementTypes";
+import useInput from "@/app/hooks/useInput";
+import { getAnnouncementById } from "@/api/AnnounceApi";
 const QuillEditor = dynamic(() => import("@/app/components/Editor/Editor"), {
   ssr: false,
 });
 const Edit = ({ params }: { params: { id: string } }) => {
-  const getAnnouncementById = async (id: string) => {
-    const res = await fetch(
-      `http://localhost:3000/api/announcement/${id}/edit`
-    );
-    const data = await res.json();
-    return data.announcement;
-  };
-
+  const { value, onChange } = useInput();
   const { data } = useQuery<AnnounceProps>(["announcement"], () => {
     return getAnnouncementById(params.id);
   });
@@ -32,9 +27,10 @@ const Edit = ({ params }: { params: { id: string } }) => {
           <div className="mt-[60px] text-base font-semibold">공지사항</div>
           <div className="w-[800px] flex pt-[60px] pb-[64px] flex-col items-center ">
             <div className="flex justify-between flex-col pb-0  self-stretch pb-6 border-b border-[#EDEDED] ">
-              <input
+              <textarea
+                onChange={() => onChange}
                 defaultValue={data?.title}
-                className="font-semibold text-[32px] whitespace-pre-wrap "
+                className="overflow-hidden whitespace-nowrap  font-semibold text-[32px] "
               />
 
               <div className="font-normal text-base text-[#707070] mt-4 mb-8">
@@ -52,11 +48,7 @@ const Edit = ({ params }: { params: { id: string } }) => {
 
           <div className="space-x-3 mt-4">
             <CancelButton />
-            <SaveButton
-              id={params.id}
-              title={data?.title as string}
-              content={html}
-            />
+            <SaveButton id={params.id} title={value} content={html} />
           </div>
         </div>
       </div>

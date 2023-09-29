@@ -1,7 +1,7 @@
 import React from "react";
 import type { LayoutProps } from "../types/LayoutProps";
-import SearchInput from "../components/Input/SearchInput";
-import { getAnnouncement } from "../../../prisma/announceQuery";
+
+
 
 const layout = ({ children }: LayoutProps) => {
   return (

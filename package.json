@@ -32,6 +32,6 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.29.5-appdir.0"
+    "@netlify/plugin-nextjs": "^4.40.1"
   }
 }
